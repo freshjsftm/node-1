@@ -1,12 +1,23 @@
 "use strict";
 const {MyMath} = require('./MyMath');
 const {Component} = require('./Component');
-require('test');
+const fs = require('fs/promises');
 
-const res1 = MyMath.sum(2, 5);
-console.log("res1 = ", res1);
-const component1 = new Component();
-component1.render();
+fs.readFile('./text.txt', 'utf-8')
+  .then((content)=>{
+    console.log(content)
+    //fs.writeFile('./newText.txt', content+'\n123456789', 'utf-8');
+    fs.appendFile('./newText.txt', content+'\n123456789\n', 'utf-8');
+  })
+  .catch((err) => {console.log(err)})
+
+// const res1 = MyMath.sum(2, 5);
+// console.log("res1 = ", res1);
+// const component1 = new Component();
+// component1.render();
+
+
+
 
 //require
 //Resolving->Loading->Wrapping->Evalution->Caching
